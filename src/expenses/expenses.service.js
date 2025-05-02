@@ -16,7 +16,7 @@ function getAll({ userId: queryUserId, categories, to, from }) {
 
   if (categories) {
     const categoriesArray =
-      typeof categories === 'string' ? [categories] : categories || [];
+      typeof categories === 'string' ? categories.split(',') : categories || [];
     const handleFilterByCategories = ({ category }) =>
       categoriesArray.includes(category);
 
