@@ -50,7 +50,7 @@ const update = async (req, res) => {
     return res.sendStatus(400);
   }
 
-  const user = usersService.getById(id);
+  const user = await usersService.getById(id);
 
   if (!user) {
     return res.sendStatus(404);

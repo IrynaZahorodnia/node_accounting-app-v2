@@ -15,18 +15,24 @@ function getAll({ userId: queryUserId, categories, to, from }) {
   }
 
   if (categories) {
+    const categoriesArray =
+      typeof categories === 'string' ? [categories] : categories || [];
     const handleFilterByCategories = ({ category }) =>
-      categories.includes(category);
+      categoriesArray.includes(category);
 
     filteredExpenses = filteredExpenses.filter(handleFilterByCategories);
   }
 
   if (from) {
-    filteredExpenses = filteredExpenses.filter(({ spentAt }) => spentAt > from);
+    filteredExpenses = filteredExpenses.filter(
+      ({ spentAt }) => Date.parse(spentAt) > Date.parse(from),
+    );
   }
 
   if (to) {
-    filteredExpenses = filteredExpenses.filter(({ spentAt }) => spentAt < to);
+    filteredExpenses = filteredExpenses.filter(
+      ({ spentAt }) => Date.parse(spentAt) < Date.parse(to),
+    );
   }
 
   return filteredExpenses;

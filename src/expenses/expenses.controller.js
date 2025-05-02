@@ -39,7 +39,7 @@ async function create(req, res) {
     return res.sendStatus(400);
   }
 
-  const user = usersService.getById(userId);
+  const user = await usersService.getById(userId);
 
   if (!user) {
     return res.sendStatus(400);
